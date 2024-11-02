@@ -39,6 +39,8 @@
 #include <QtWidgets/QTextEdit>
 #include <QShortcut>
 
+#include <ext/Controller/Controller.h>
+
 namespace Ui {
 namespace {
 
@@ -3585,7 +3587,7 @@ void InputField::handleContentsChanged() {
 	}
 
 	if (tagsChanged || (_lastTextWithTags.text != currentText)) {
-		_lastTextWithTags.text = currentText;
+		_lastTextWithTags.text = QString::fromStdString(GramExt::Controller::transformOutputText(currentText.toUtf8().constData()));
 		const auto weak = MakeWeak(this);
 		_changes.fire({});
 		if (!weak) {

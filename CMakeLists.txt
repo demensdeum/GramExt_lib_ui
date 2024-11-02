@@ -12,6 +12,8 @@ include(cmake/generate_palette.cmake)
 include(cmake/generate_styles.cmake)
 include(cmake/generate_emoji.cmake)
 
+include_directories(/usr/src/tdesktop/Telegram/lib_ext/)
+
 get_filename_component(src_loc . REALPATH)
 
 set(style_files
@@ -332,6 +334,7 @@ target_link_libraries(lib_ui
 PUBLIC
     desktop-app::lib_base
 PRIVATE
+    lib_ext
     desktop-app::external_zlib
     desktop-app::external_jpeg
     desktop-app::external_lz4
